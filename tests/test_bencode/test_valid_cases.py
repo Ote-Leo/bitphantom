@@ -1,6 +1,6 @@
 import random
 
-from pyrent.bencode import decode, encode
+from bitphantom.bencode import decode, encode
 from tests import (
 	assert_equal,
 	find_tests,

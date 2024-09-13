@@ -1,6 +1,6 @@
-======
-Pyrent
-======
+==========
+BitPhantom
+==========
 
 A python bittorrent client.
 

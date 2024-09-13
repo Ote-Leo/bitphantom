@@ -3,7 +3,7 @@ import random
 import string
 import sys
 
-from pyrent.bencode import Bencode
+from bitphantom.bencode import Bencode
 
 __test_self = unittest.TestCase()
 
