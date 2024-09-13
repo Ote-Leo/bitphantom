@@ -18,4 +18,9 @@ setuptools.setup(
 	include_package_data=True,
 	install_requires=[],
 	extras_require={},
+	entry_points={
+		"console_scripts": [
+			"bencode2json = bitphantom.bencode2json:main",
+		]
+	},
 )
