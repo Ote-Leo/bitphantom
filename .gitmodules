@@ -1,0 +1,3 @@
+[submodule "references/bittorrent"]
+	path = references/bittorrent
+	url = https://github.com/bittorrent/bittorrent.org.git
