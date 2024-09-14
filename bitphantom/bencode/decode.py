@@ -6,7 +6,7 @@
 from collections.abc import Callable
 from typing import TypeAlias
 
-from .bencode_types import Bencode
+from .bencode_types import BenDictionary, BenList, Bencode
 
 Offset: TypeAlias = int
 
@@ -71,7 +71,7 @@ def decode_integer(buf: bytes) -> tuple[int, Offset]:
 	return integer, end + 1
 
 
-def decode_list(buf: bytes) -> tuple[list[Bencode], Offset]:
+def decode_list(buf: bytes) -> tuple[BenList, Offset]:
 	res: list[Bencode] = []
 	offset: int = 0
 
@@ -87,7 +87,7 @@ def decode_list(buf: bytes) -> tuple[list[Bencode], Offset]:
 			res.append(val)
 
 
-def decode_dictionary(buf: bytes) -> tuple[dict[str, Bencode], Offset]:
+def decode_dictionary(buf: bytes) -> tuple[BenDictionary, Offset]:
 	res: dict[str, Bencode] = {}
 	offset: int = 0
 

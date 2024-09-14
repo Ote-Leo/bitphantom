@@ -1,1 +1,3 @@
-Bencode = str | bytes | int | list["Bencode"] | dict[str, "Bencode"]
+BenDictionary = dict[str, "Bencode"]
+BenList = list["Bencode"]
+Bencode = str | bytes | int | BenList | BenDictionary

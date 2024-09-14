@@ -4,12 +4,10 @@ BitPhantom
 
 A python bittorrent client.
 
-TODOs
-=====
+.. todo::  Bencode Processing
 
-- [ ] bencode
-        - [ ] ``bencode2json`` script
-        - [X] decoding
-        - [X] encoding
-        - [X] valid case unit tests
-        - [ ] invalid case unit tests
+   bencode invalid cases unittests
+
+.. todo:: MetaInfo Processing
+
+   bencode invalid cases unittests
