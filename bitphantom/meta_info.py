@@ -1,9 +1,9 @@
+import base64
 import hashlib
 import pathlib
 import urllib.parse
 from dataclasses import dataclass
 from typing import Any, Iterator, NamedTuple, TypeAlias, Union
-import base64
 
 from . import bencode
 
@@ -94,10 +94,14 @@ def preview_files(files: list[Content], prefix: str = "") -> list[str]:
 def preview_tree_entry(key: str, val: int | FileTree, key_prefix: str, prefix: str, lines: list[str]):
 	if isinstance(val, int):
 		lines.append(f"{key_prefix}{key} ({val})")
-	else:
-		postfix = "/" if not key.endswith("/") else ""
-		lines.append(f"{key_prefix}{key}{postfix}")
-		lines += preview_tree(val, prefix)
+		return
+
+	postfix = ""
+	if not key.endswith("/"):
+		postfix = "/"
+
+	lines.append(f"{key_prefix}{key}{postfix}")
+	lines += preview_tree(val, prefix)
 
 
 def preview_tree(tree: FileTree, prefix: str = "") -> list[str]:
@@ -228,9 +232,13 @@ def load_metainfo(path: str | pathlib.Path) -> MetaInfo:
 	with open(path, "rb") as file:
 		raw_bencode = file.read()
 
-	if not (raw_bencode and raw_bencode[0] == ord(b"d")):
+	return loads_metainfo(raw_bencode)
+
+
+def loads_metainfo(source: bytes) -> MetaInfo:
+	if not (source and source[0] == ord(b"d")):
 		raise ValueError("invalid torrent file")
-	benval, _ = bencode.decode_dictionary(raw_bencode[1:])
+	benval, _ = bencode.decode_dictionary(source[1:])
 
 	raw_trackers = benval.get("announce-list")
 	if raw_trackers is None:

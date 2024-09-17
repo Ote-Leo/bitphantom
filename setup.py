@@ -21,6 +21,7 @@ setuptools.setup(
 	entry_points={
 		"console_scripts": [
 			"bencode2json = bitphantom.bencode2json:main",
+			"display_metainfo = bitphantom.display_metainfo:main",
 		]
 	},
 )
